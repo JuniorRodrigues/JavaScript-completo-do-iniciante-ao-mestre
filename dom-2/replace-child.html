@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert</title>
+    <style>
+        body {
+            font-family: monospace;
+        }
+
+        ul ul li:last-child:before {
+            content: "•";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Lorem 1</p>
+        <p>Lorem <a href="#">link</a>.</p>
+        <p>Lorem 3</p>
+
+        <h2>Lista</h2>
+        <ul id="list">
+            <li>Item 1</li>
+            <li>
+                Item 2
+                <ul>
+                    <li>Item 2.a</li>
+                    <li>Item 2.b</li>
+                    <li>Item 2.c</li>
+                    <li></li>
+                </ul>
+            </li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+    </div>
+
+    <script>
+        Object.prototype.css = function (obj) {
+            for (prop in obj) {
+                this.style[prop] = obj[prop];
+            }
+        }
+
+        const container         = document.querySelector('.container');
+        const listTitle         = container.querySelector('h2');
+        const firstList         = container.querySelector('#list');
+        const firstParagraph    = container.firstElementChild;
+        const secondParagraph   = container.firstElementChild.nextElementSibling.cloneNode(true);
+        const thirdParagraph    = container.firstElementChild.nextElementSibling.nextElementSibling;
+
+        /* Structure
+            container.replaceChild(newObj, ObjTarget);
+        */
+
+        container.replaceChild(thirdParagraph, firstList);
+        container.removeChild(listTitle);
+
+        container.replaceChild(secondParagraph, firstParagraph);
+
+        // BLOCK REMOVED ELEMENTS
+        const removedTagsContainer = document.createElement('div');
+        removedTagsContainer.setAttribute('class', 'removed-tags');
+        removedTagsContainer.css({
+            border: '1px solid crimson',
+            padding: '10px 30px'
+        });
+
+        const rmvTagsTitle = document.createElement('h2');
+        rmvTagsTitle.textContent = 'Removed Elements';
+        rmvTagsTitle.css({color: 'gold'});
+
+        removedTagsContainer.appendChild(rmvTagsTitle);
+        removedTagsContainer.appendChild(firstList);
+        container.appendChild(removedTagsContainer);
+
+    </script>
+</body>
+</html>

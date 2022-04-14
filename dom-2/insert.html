@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert</title>
+    <style>
+        body {
+            font-family: monospace;
+        }
+
+        ul ul li:last-child:before {
+            content: "•";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Lorem 1</p>
+        <p>Lorem <a href="#">link</a>.</p>
+        <p>Lorem 3</p>
+
+        <h2>Lista</h2>
+        <ul id="list">
+            <li>Item 1</li>
+            <li>
+                Item 2
+                <ul>
+                    <li>Item 2.a</li>
+                    <li>Item 2.b</li>
+                    <li>Item 2.c</li>
+                    <li></li>
+                </ul>
+            </li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+    </div>
+
+    <script>
+        const container  = document.querySelector('.container');
+        const firstList  = document.querySelector('#list');
+        const secondList = document.querySelector('ul ul');
+
+        // beforebegin, afterbegin, beforeend, afterend
+        container.insertAdjacentHTML('beforebegin', '<h1>Title BeforeBegin</h1>');
+        firstList.insertAdjacentHTML('afterbegin', '<li>Item [ AfterBegin ]</li>');
+        secondList.insertAdjacentHTML('beforeend', '<li>Item [ BeforeEnd ]</li>');
+        container.insertAdjacentHTML('afterend', '<p>Lorem [ AfterEnd ]</li>');
+
+        const elBeforeBegin = container.previousElementSibling;
+        const elAfterBegin  = firstList.firstElementChild;
+        const elSecondList  = secondList.lastElementChild;
+        const elAfterEnd    = container.nextElementSibling;
+
+        const elements = [elBeforeBegin, elAfterBegin, elSecondList, elAfterEnd];
+
+        elements.forEach(el => el.style.color = '#ffcc00');
+
+        const newText = document.createTextNode('Hello lovely people!');
+        console.log(newText);
+        container.insertAdjacentText('afterbegin', newText.textContent)
+
+        // Avoid using html where users can change a variable
+    </script>
+</body>
+</html>

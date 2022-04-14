@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+    <link rel="stylesheet" href="../../styles/reset.css">
+    <link rel="stylesheet" href="../../styles/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/todolist.css">
+</head>
+<body>
+    <div class="todo-list__app">
+        <div class="todo-add-item__container">
+            <h1 class="heading">Todo List</h1>
+            <form action="#" class="todo-add-item" id="todo-add">
+                <input class="inputItem" id="item-input" type="text" name="text" placeholder="New Item">
+                <button id="add-item" type="submit">Add</button>
+            </form>
+        </div>
+
+        <div class="todo-list__container">
+            <ul id="todo-list"></ul>
+        </div>
+    </div>
+    <script src="js/todolist.js"></script>
+</body>
+</html>

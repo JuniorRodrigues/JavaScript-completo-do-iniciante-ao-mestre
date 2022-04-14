@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLCollection vs Nodelist</title>
+    <style>
+        ul ul li:last-child:before {
+            content: "•";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container">
+            <p>teste 1</p>
+            <p>Lorem <a href="#">link</a>.</p>
+            <p>teste 3</p>
+
+            <h2>Lista</h2>
+            <ul id="list">
+                <li>Item 1</li>
+                <li>
+                    Item 2
+                    <ul>
+                        <li>Item 2.a</li>
+                        <li>Item 2.b</li>
+                        <li>Item 2.c</li>
+                        <li></li>
+                    </ul>
+                </li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+                <li>Item 5</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const mainContainer = document.querySelector('.container');
+
+        const title = document.createElement('h1');
+        const attribute = document.createAttribute('id');
+
+        attribute.value = 'tlt-section';
+        title.setAttributeNode(attribute);
+
+        title.setAttribute('data-title', 'default');
+        title.setAttribute('style', 'color: gold');
+
+        const text = document.createTextNode('Criar nós no DOM');
+        title.appendChild(text);
+
+        title.textContent += ' textContent';
+
+        title; // h1#tlt-section
+
+        // It's possible to add nodes or strings by using append or prepend
+        mainContainer.prepend(title); // it doesn't work on IE 11
+        mainContainer.append('texto'); // it also doesn't work on IE 11
+
+        const p = document.createElement('p');
+
+        p.setAttribute('id', 'subtitle');
+        p.setAttribute('style', 'color: gold;');
+
+        p.textContent = 'Lorem ipsum ammet dollor';
+
+        p; // p#subtitle
+        mainContainer.appendChild(p); // croosbrowser
+
+        const newTitle = document.createElement('h2');
+        newTitle.textContent = 'Subtitle';
+        newTitle.style.color = 'gold';
+
+        newTitle;
+        mainContainer.insertBefore(newTitle, p); // Node.insertBefore(element, previousReferenceElement)
+        mainContainer.appendChild(title);
+
+        // when we take a node on js if we try to insert it again, it'll change its position
+        let list = document.querySelector('#list');
+        list = list.cloneNode(true); // if set true it'll also get children
+        mainContainer.insertBefore(list, title.previousElementSibling);
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Events</title>
+</head>
+<body>
+    <form action="">
+        <textarea name="" id="" cols="30" rows="10" placeholder="ab"></textarea>
+    </form>
+
+    <script>
+        const textarea = document.querySelector('textarea');
+
+        const keyDown = e => console.log('keyDown:', e.target.value || '...');
+        const keyPres = e => console.log('keyPres:', e.target.value || '...');
+        const keyUp = e => console.log('keyUp:', e.target.value || '...');
+        // input is faster and is triggered when add content even pasting it
+        const input = e => console.log('input:', e.target.value || '...');
+
+        textarea.addEventListener('keydown', keyDown);
+        textarea.addEventListener('keypress', keyPres);
+        textarea.addEventListener('keyup', keyUp);
+        textarea.addEventListener('input', input);
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLCollection vs Nodelist</title>
+    <style>
+        ul ul li:last-child:before {
+            content: "•";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teste DOM</h1>
+        <div class="container">
+            <p>teste 1</p>
+            <p>Lorem <a href="#">link</a>.</p>
+            <p>teste 3</p>
+
+            <h2>Lista</h2>
+            <ul id="list">
+                <li>Item 1</li>
+                <li>
+                    Item 2
+                    <ul>
+                        <li>Item 2.a</li>
+                        <li>Item 2.b</li>
+                        <li>Item 2.c</li>
+                        <li></li>
+                    </ul>
+                </li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+                <li>Item 5</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const body          = document.body;
+        const parentElement = body.parentElement;
+        const parentNode    = body.parentNode;
+
+        parentElement === parentNode; // true
+
+        const html = parentNode;
+        const parentElementHTML = html.parentElement;
+        const parentNodeHTML    = html.parentNode;
+
+        console.log(parentElementHTML, parentNodeHTML); // null, #document (node)
+
+        const h2 = document.querySelector('h2');
+        h2.nextSibling;        // #text (white space and break line)
+        h2.nextElementSibling; // <ul id="list">...</ul>
+
+        const h2NextSibling = h2.nextElementSibling;
+        h2NextSibling.style.backgroundColor = '#ffcc00';
+
+        h2.previousSibling; // #text
+        h2.previousElementSibling; // <p>teste 3</p>
+
+        const link = document.querySelector('a');
+        const list = document.querySelector('ul ul');
+
+        list.childNodes; // NodeList [text, li, text, li, text li, text]
+        list.children; // HTMLCollection [li, li, li]
+
+        link.parentElement.childNodes; // NodeList [text, a, text]
+        link.parentElement.children;   // HTMLCollection [a]
+
+        link.parentElement.firstChild;          // "Lorem "
+        link.parentElement.firstElementChild;   // <a>
+        link.parentElement.lastChild;           // "."
+        link.parentElement.lastElementChild;    // <a>
+
+        const lastListItem = document.querySelector('ul ul').lastElementChild;
+        console.log(lastListItem.hasChildNodes()); // true - verifica se há nós (pseudo-elementos não são nós ::after e ::before)
+
+        if (lastListItem.hasChildNodes()) {
+            console.log(lastListItem.childNodes);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+@import '_reset';
+
+html, body { height: 100%; }
+
+body {
+    background: crimson;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-container {
+    position: relative;
+
+    [class|="btn"] {
+        position: absolute;
+
+        &.btn-play {
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: opacity 0.3s;
+        }
+
+        &.btn-volume-up,
+        &.btn-volume-down {
+            bottom: -2rem;
+        }
+
+        &.btn-volume-up {
+            left: 0;
+        }
+
+        &.btn-volume-down {
+            right: 0;
+        }
+    }
+
+    &:hover .btn-play {
+        opacity: 1;
+    }
+}

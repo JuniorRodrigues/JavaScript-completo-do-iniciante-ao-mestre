@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLCollection vs Nodelist</title>
+    <style>
+        ul ul li:last-child:before {
+            content: "•";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>teste 1</p>
+        <p>Lorem <a href="#">link</a>.</p>
+        <p>teste 3</p>
+
+        <h2>Lista</h2>
+        <ul id="list">
+            <li>Item 1</li>
+            <li>
+                Item 2
+                <ul>
+                    <li>Item 2.a</li>
+                    <li>Item 2.b</li>
+                    <li>Item 2.c</li>
+                    <li></li>
+                </ul>
+            </li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+    </div>
+
+    <script>
+        // It doesn't work on IE 11
+
+        const container = document.querySelector('.container');
+        const secondParagraph = container.firstElementChild.nextElementSibling;
+
+        secondParagraph.style.color = 'gold';
+        secondParagraph.before('Texto inserido com before');
+        secondParagraph.after('Texto inserido com after', ' + second parameter');
+
+        const span = document.createElement('span');
+        span.style.color = 'cadetblue';
+        span.textContent = 'Created Span';
+        secondParagraph.after(span, '\n<br>');
+    </script>
+</body>
+</html>

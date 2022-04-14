@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatar nome</title>
+    <style>
+        body {
+            color: white;
+            background: crimson;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        function formatName (nome) {
+            nome = nome.trim();
+
+            const firstSpaceIndex = nome.indexOf(' ');
+            const lastName        = nome.substring(firstSpaceIndex + 1);
+            const firstName       = nome.replace(lastName, '');
+
+            const formattedName = firstName ? `${lastName}, ${firstName}` : lastName;
+
+            return formattedName;
+        }
+
+        function newFormatter (nome) {
+            const [firstName, ...lastName] = nome.trim().split(' ');
+            const formattedName = lastName.length
+                ? `${lastName.join(' ')}, ${firstName}`
+                : firstName
+            ;
+
+            return formattedName;
+        }
+
+        console.log(newFormatter('Agnaldo'));
+        console.log(newFormatter('Agnaldo Rodrigues Junior'));
+
+        // console.log(formatName('Agnaldo'));
+        // console.log(formatName('Agnaldo Rodrigues'));
+        // console.log(formatName('Agnaldo Rodrigues Junior'));
+    </script>
+</body>
+</html>

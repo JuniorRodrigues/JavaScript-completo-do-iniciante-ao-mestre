@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Função construtora</title>
+    <style>body {background: darkslateblue}</style>
+</head>
+<body>
+
+    <script>
+        console.clear();
+
+        'use strict';
+
+        function Task(name = 'sem nome') {
+            if (this === undefined) return;
+
+            let _name = name;
+            const _createAt = Date.now();
+
+            this.createAt = _createAt;
+            this.updatedAt = null;
+
+            this.changeName = function (newName) {
+                _name = newName;
+                this.updatedAt = Date.now();
+            }
+
+            this.getName = function () {
+                return _name
+            }
+        }
+
+        const task1 = new Task('Comprar')
+        console.log(task1.getName())
+
+        task1.changeName('Vender');
+        console.log(task1.getName())
+
+        const task2 = new Task()
+        console.log(task2.getName())
+    </script>
+</body>
+</html>

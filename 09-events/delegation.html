@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            padding: 2rem;
+        }
+
+        button {
+            padding: 1rem 1.6rem;
+            border: 0;
+            background: cadetblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button type="button">Botão 1</button>
+        <button type="button">Botão 2</button>
+        <button type="button">Botão 3</button>
+    </div>
+
+    <script>
+        const container = document.getElementsByClassName('container')[0];
+        const firstBtn = container.getElementsByTagName('button')[0];
+
+        container.onclick = e => {
+            const elTarget = e.target;
+            if (elTarget.localName !== 'button') return;
+
+            for (prop in elTarget) if (elTarget[prop] === 'button') {
+                console.log(`e.target.${prop} =`, elTarget[prop]);
+            }
+            console.log('el.target.nodeName =', elTarget.nodeName);
+        }
+    </script>
+</body>
+</html>
